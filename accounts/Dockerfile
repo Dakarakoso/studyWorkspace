@@ -1,6 +1,6 @@
 FROM openjdk:11-slim as build
 
-MAINTAINER Willian.com
+LABEL TEAM=Willian.com
 
 COPY target/accounts-0.0.1-SNAPSHOT.jar accounts-0.0.1-SNAPSHOT.jar
 
