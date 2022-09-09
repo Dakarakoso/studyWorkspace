@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.config.CardsServiceConfig;
 import com.example.demo.model.Cards;
 import com.example.demo.model.Customer;
+import com.example.demo.model.Properties;
 import com.example.demo.repository.CardsRepository;
 
 @RestController
@@ -17,6 +19,9 @@ public class CardsController {
 
 	@Autowired
 	private CardsRepository cardsRepository;
+
+	@Autowired
+	CardsServiceConfig cardsConfig;
 
 	@GetMapping("/hello")
 	public String hello() {
@@ -31,5 +36,11 @@ public class CardsController {
 		} else {
 			return null;
 		}
+	}
+
+	@GetMapping("/cards/properties")
+	public Properties getPropertiesDetails() {
+		return new Properties(cardsConfig.getMsg(), cardsConfig.getBuildVersion(), cardsConfig.getMailDetails(),
+				cardsConfig.getActiveBranches());
 	}
 }
