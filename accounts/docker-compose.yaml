@@ -1,0 +1,27 @@
+version: "3.3"
+
+services:
+  accounts:
+    image: dakarakoso/accounts:latest
+    mem_limit: 700m
+    ports:
+      - "8080:8080"
+    networks:
+      - dakarakoso-network
+  loans:
+    image: dakarakoso/loans:latest
+    mem_limit: 700m
+    ports:
+      - "8090:8090"
+    networks:
+      - dakarakoso-network
+  cards:
+    image: dakarakoso/cards:latest
+    mem_limit: 700m
+    ports:
+      - "9000:9080"
+    networks:
+      - dakarakoso-network
+
+networks:
+  dakarakoso-network:
