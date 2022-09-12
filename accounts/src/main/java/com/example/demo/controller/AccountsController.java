@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,9 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.config.AccountsServiceConfig;
 import com.example.demo.model.Accounts;
+import com.example.demo.model.Cards;
 import com.example.demo.model.Customer;
+import com.example.demo.model.CustomerDetails;
+import com.example.demo.model.Loans;
 import com.example.demo.model.Properties;
 import com.example.demo.repository.AccountsRepository;
+import com.example.demo.service.client.CardsFeignClient;
+import com.example.demo.service.client.LoansFeignClient;
 
 @RestController
 public class AccountsController {
@@ -20,6 +27,12 @@ public class AccountsController {
 
 	@Autowired
 	AccountsServiceConfig accountsConfig;
+
+	@Autowired
+	CardsFeignClient cardsFeignClient;
+
+	@Autowired
+	LoansFeignClient loansFeignClient;
 
 	@GetMapping("/hello")
 	public String hello() {
@@ -41,5 +54,17 @@ public class AccountsController {
 		return new Properties(accountsConfig.getMsg(), accountsConfig.getBuildVersion(),
 				accountsConfig.getMailDetails(), accountsConfig.getActiveBranches());
 
+	}
+
+	@PostMapping("/myCustomerDetails")
+	public CustomerDetails myCustomerDetails(@RequestBody Customer customer) {
+		Accounts accounts = accountsRepository.findByCustomerId(customer.getCustomerId());
+		List<Loans> loans = loansFeignClient.getLoanDetails(customer);
+		List<Cards> cards = cardsFeignClient.getCardDetails(customer);
+		CustomerDetails customerDetails = new CustomerDetails();
+		customerDetails.setAccounts(accounts);
+		customerDetails.setLoans(loans);
+		customerDetails.setCards(cards);
+		return customerDetails;
 	}
 }
