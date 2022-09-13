@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +20,8 @@ import com.example.demo.repository.LoansRepository;
 @RestController
 public class LoansController {
 
+	private static final Logger logger = LoggerFactory.getLogger(LoansController.class);
+
 	@Autowired
 	private LoansRepository loansRepository;
 
@@ -27,6 +31,7 @@ public class LoansController {
 	@PostMapping("/myLoans")
 	public List<Loans> getLoansDetails(@RequestHeader("eazybank-correlation-id") String correlationId,
 			@RequestBody Customer customer) {
+		logger.info("getLoansDetails() method called");
 		System.out.println("Invoking Loans Microservice");
 		List<Loans> loans = loansRepository.findByCustomerIdOrderByStartDtDesc(customer.getCustomerId());
 		if (loans != null) {
