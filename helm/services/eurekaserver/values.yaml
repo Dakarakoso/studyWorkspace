@@ -1,0 +1,20 @@
+deploymentName: eurekaserver-deployment
+deploymentLabel: eurekaserver
+
+replicaCount: 1
+
+image:
+  repository: dakarakoso/eurekaserver
+  tag: latest
+
+containerPort: 8070
+
+service:
+  type: LoadBalancer
+  port: 8070
+  targetPort: 8070
+
+config_enabled: true
+zipkin_enabled: true
+profile_enabled: true
+eureka_enabled: false
