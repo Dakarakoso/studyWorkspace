@@ -22,3 +22,35 @@ version: 0.1.0
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
 appVersion: "1.16.0"
+dependencies:
+  - name: common
+    version: 0.1.0
+    repository: file://../../common
+
+  - name: zipkin
+    version: 0.1.0
+    repository: file://../../services/zipkin
+
+  - name: configserver
+    version: 0.1.0
+    repository: file://../../services/configserver
+
+  - name: eurekaserver
+    version: 0.1.0
+    repository: file://../../services/eurekaserver
+
+  - name: accounts
+    version: 0.1.0
+    repository: file://../../services/accounts
+
+  - name: cards
+    version: 0.1.0
+    repository: file://../../services/cards
+
+  - name: loans
+    version: 0.1.0
+    repository: file://../../services/loans
+
+  - name: gatewayserver
+    version: 0.1.0
+    repository: file://../../services/gatewayserver

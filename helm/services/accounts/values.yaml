@@ -1,6 +1,3 @@
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
 deploymentName: accounts-deployment
 deploymentLabel: accounts
 
@@ -13,7 +10,7 @@ image:
 containerPort: 8080
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   port: 8080
   targetPort: 8080
 

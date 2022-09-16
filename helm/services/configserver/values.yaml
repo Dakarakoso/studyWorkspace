@@ -1,5 +1,4 @@
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+
 deploymentName: configserver-deployment
 deploymentLabel: configserver
 
@@ -12,7 +11,7 @@ image:
 containerPort: 8071
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   port: 8071
   targetPort: 8071
 

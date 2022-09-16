@@ -1,5 +1,3 @@
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
 
 deploymentName: cards-deployment
 deploymentLabel: cards
@@ -13,7 +11,7 @@ image:
 containerPort: 9000
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   port: 9000
   targetPort: 9000
 

@@ -4,13 +4,13 @@ deploymentLabel: loans
 replicaCount: 1
 
 image:
-  repository: eazybytes/loans
+  repository: dakarakoso/loans
   tag: latest
 
 containerPort: 8090
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   port: 8090
   targetPort: 8090
 

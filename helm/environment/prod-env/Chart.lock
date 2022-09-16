@@ -1,0 +1,27 @@
+dependencies:
+- name: common
+  repository: file://../../common
+  version: 0.1.0
+- name: zipkin
+  repository: file://../../services/zipkin
+  version: 0.1.0
+- name: configserver
+  repository: file://../../services/configserver
+  version: 0.1.0
+- name: eurekaserver
+  repository: file://../../services/eurekaserver
+  version: 0.1.0
+- name: accounts
+  repository: file://../../services/accounts
+  version: 0.1.0
+- name: cards
+  repository: file://../../services/cards
+  version: 0.1.0
+- name: loans
+  repository: file://../../services/loans
+  version: 0.1.0
+- name: gatewayserver
+  repository: file://../../services/gatewayserver
+  version: 0.1.0
+digest: sha256:ce8e9a76b40b9acc944ac2cd39c21478119c6868c0267d949f72e84158fb3626
+generated: "2022-09-15T17:49:40.866721+09:00"

@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,7 +48,8 @@ public class AccountsController {
 	@GetMapping("/hello")
 	@RateLimiter(name = "hello", fallbackMethod = "helloFallback")
 	public String hello() {
-		return "hello";
+		Optional<String> podName = Optional.ofNullable(System.getenv("HOSTNAME"));
+		return "hello" + podName.get();
 	}
 
 	private String helloFallback(Throwable t) {
