@@ -11,7 +11,7 @@ image:
 containerPort: 9411
 
 service:
-  type: ClusterIP
+  type: LoadBalancer
   port: 9411
   targetPort: 9411
 
@@ -19,3 +19,4 @@ config_enabled: false
 zipkin_enabled: false
 profile_enabled: false
 eureka_enabled: false
+# keycloak_enabled: false

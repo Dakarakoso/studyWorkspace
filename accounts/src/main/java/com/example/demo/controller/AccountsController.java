@@ -77,7 +77,7 @@ public class AccountsController {
 	@PostMapping("/myCustomerDetails")
 	@CircuitBreaker(name = "detailsForCustomerSupportApp", fallbackMethod = "myCustomerDetailsFallBack")
 	@Retry(name = "retryForCustomerDetails", fallbackMethod = "myCustomerDetailsFallBack")
-	public CustomerDetails myCustomerDetails(@RequestHeader("eazybank-correlation-id") String correlationId,
+	public CustomerDetails myCustomerDetails(@RequestHeader("bank-correlation-id") String correlationId,
 			@RequestBody Customer customer) {
 		logger.info("myCustomerDetails() method called");
 		Accounts accounts = accountsRepository.findByCustomerId(customer.getCustomerId());
@@ -90,7 +90,7 @@ public class AccountsController {
 		return customerDetails;
 	}
 
-	private CustomerDetails myCustomerDetailsFallBack(@RequestHeader("eazybank-correlation-id") String correlationId,
+	private CustomerDetails myCustomerDetailsFallBack(@RequestHeader("bank-correlation-id") String correlationId,
 			Customer customer, Throwable t) {
 		Accounts accounts = accountsRepository.findByCustomerId(customer.getCustomerId());
 		List<Loans> loans = loansFeignClient.getLoanDetails(correlationId, customer);

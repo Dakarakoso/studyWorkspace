@@ -11,7 +11,7 @@ image:
 containerPort: 9000
 
 service:
-  type: ClusterIP
+  type: LoadBalancer
   port: 9000
   targetPort: 9000
 
@@ -19,3 +19,4 @@ config_enabled: true
 zipkin_enabled: true
 profile_enabled: true
 eureka_enabled: true
+# keycloak_enabled: false
